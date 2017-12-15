@@ -2,7 +2,9 @@
 
 const app = function () {
 
-    const url = 'https://www.anapioficeandfire.com/api/houses'
+    const dropdown = document.querySelector('#dropdown');
+    const url = 'https://www.anapioficeandfire.com/api/houses?page=1&pageSize=250'
+    // const url = 'https://www.anapioficeandfire.com/api/houses'
     // const one = 'https://anapioficeandfire.com/api/characters/583'
     const house = JSON.parse(localStorage.getItem('house'));
     console.log(url);
@@ -34,8 +36,11 @@ var populateHouses = function(houses) {
 
   houses.forEach(function(house){
     var li = document.createElement('li');
-    li.innerText = house.name;
+    var liSeat = document.createElement('li');
+    li.innerText = house.name + ', ' + house.region;
+    liSeat.innerText = house.region;
     ul.appendChild(li);
+    ul.appendChild(liSeat);
   });
 };
 
