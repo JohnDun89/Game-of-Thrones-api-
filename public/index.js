@@ -2,8 +2,8 @@
 
 const app = function () {
 
-    const url = '"https://www.anapioficeandfire.com/api/houses"'
-    const one = 'https://anapioficeandfire.com/api/characters/583'
+    const url = 'https://www.anapioficeandfire.com/api/houses'
+    // const one = 'https://anapioficeandfire.com/api/characters/583'
     makeRequest(url, requestComplete);
     console.log('function running');
 
@@ -29,8 +29,12 @@ const makeRequest = function(url, callback) {
 
 var populateHouses = function(houses) {
   var houseList = document.getElementById('house-name');
-  house.forEach(function())
-}
+  houses.forEach(function(beer){
+    var li = document.createElement('li');
+    li.innerText = houses.name;
+    houseList.appendChild(li);
+  });
+};
 
 
 
