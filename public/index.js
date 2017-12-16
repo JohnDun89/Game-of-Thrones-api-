@@ -11,6 +11,8 @@ const app = function () {
   // console.log('function running');
 
   dropdown.addEventListener('change', function(){
+    makeRequest(url, requestComplete);
+
     const house = houses[this.value];
     // console.log(this.value);
     // console.log('clicked');
@@ -70,7 +72,7 @@ const displayHouseTitle = function (house) {
 const displayHouseRegion = function (house) {
   const regionSelect = document.querySelector('#region');
   const regionStringy = JSON.stringify(house.region);
-  regionSelect.innerText = 'Region, ' + regionStringy;
+  regionSelect.innerText = 'Region - ' + regionStringy;
 };
 
 const displayVassalOf = function (house) {
@@ -85,7 +87,7 @@ const displayVassalOf = function (house) {
 const displayHouseWords = function (house) {
   const wordsSelect = document.querySelector('#words');
   const wordsStringy = JSON.stringify(house.words);
-  if (wordsStringy ==='""'||'" "') { return;
+  if (wordsStringy ==='""') { return;
   };
   wordsSelect.innerText = wordsStringy;
 };
@@ -93,7 +95,7 @@ const displayHouseWords = function (house) {
 var populateOneHouses = function(house) {
   var select = document.getElementById('vassal');
   vassalName = JSON.stringify(house.name);
-  select.innerText = vassalName;
+  select.innerText = 'Vassal of - ' + vassalName;
 };
 
 var populateHouses = function(houses) {
