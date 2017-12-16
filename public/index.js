@@ -60,6 +60,7 @@ const save = function(house){
 
 //-----------------------------------------------------------API appending code.
 
+
 const displayHouseTitle = function (house) {
   const titleSelect = document.querySelector('#title');
   const titleStringy = JSON.stringify(house.name);
@@ -79,14 +80,7 @@ const displayVassalOf = function (house) {
   const houseP = JSON.parse(localStorage.getItem('vassal'));
   // console.log(vassalStringy);
   makeSingleRequest(house.overlord, requestSingleComplete)
-
 };
-
-const populateVassal = function (lord) {
-  const vassalSelect = document.querySelector('#vassal');
-  const vassalStringy = JSON.stringify(lord);
-  vassalSelect.innerText = vassalStringy;
-}
 
 const displayHouseWords = function (house) {
   const wordsSelect = document.querySelector('#words');
