@@ -10,6 +10,12 @@ const app = function () {
   makeRequest(url, requestComplete);
   // console.log('function running');
 
+  const button = document.querySelector('#button');
+  console.log('button clicked');
+  button.addEventListener('click',function(){
+    window.location.href = "/words.html";
+  })
+
   dropdown.addEventListener('change', function(){
     makeRequest(url, requestComplete);
 
