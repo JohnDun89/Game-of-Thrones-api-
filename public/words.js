@@ -51,6 +51,9 @@ var wordCount = function(houses) {
   var ul = document.querySelector('#count');
   houses.forEach(function(house, index){
     allHouseWords = house.words;
+    if (allHouseWords === '') {
+      return;
+    }
     arrayOfWords = allHouseWords.split(/\s+/);
     for (var i = 0; i < arrayOfWords.length; i++) {
       word = arrayOfWords[i];
@@ -66,7 +69,7 @@ var wordCount = function(houses) {
   li.innerText = wordString;
   ul.appendChild(li);
   console.log(wordCounts);
-}
+};
 // const displayHouseTitle = function (house) {
 //   const titleSelect = document.querySelector('#title');
 //   const titleStringy = JSON.stringify(house.name);
