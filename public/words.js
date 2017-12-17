@@ -47,23 +47,25 @@ var wordDisplay = function(houses) {
 };
 
 var wordCount = function(houses) {
+  var wordCounts = {};
   var ul = document.querySelector('#count');
   houses.forEach(function(house, index){
     allHouseWords = house.words;
     arrayOfWords = allHouseWords.split(/\s+/);
-    var wordCounts = {};
     for (var i = 0; i < arrayOfWords.length; i++) {
       word = arrayOfWords[i];
       if (!wordCounts[word]) {
         wordCounts[word] = 1;
       } else {
         wordCounts[word]++;
-    }
-
-    console.log(wordCounts);
-  }
+    };
+  };
   });
-
+  const li = document.createElement('li');
+  wordString = JSON.stringify(wordCounts);
+  li.innerText = wordString;
+  ul.appendChild(li);
+  console.log(wordCounts);
 }
 // const displayHouseTitle = function (house) {
 //   const titleSelect = document.querySelector('#title');
