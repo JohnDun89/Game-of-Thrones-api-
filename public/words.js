@@ -32,19 +32,39 @@ const save = function(house){
 
 //-----------------------------------------------------------API appending code.
 
-var wordCount = function(houses) {
+var wordDisplay = function(houses) {
   console.log('word count ran');
   var ul = document.querySelector('#count');
   houses.forEach(function(house, index){
-  const li = document.createElement('li');
-  li.innerText = house.words;
-  if (house.words === '') {
-    return;
-  }
-  li.value = index;
-  ul.appendChild(li);
+    const li = document.createElement('li');
+    li.innerText = house.words;
+    if (house.words === '') {
+      return;
+    }
+    li.value = index;
+    ul.appendChild(li);
   });
 };
+
+var wordCount = function(houses) {
+  var ul = document.querySelector('#count');
+  houses.forEach(function(house, index){
+    allHouseWords = house.words;
+    arrayOfWords = allHouseWords.split(/\s+/);
+    var wordCounts = {};
+    for (var i = 0; i < arrayOfWords.length; i++) {
+      word = arrayOfWords[i];
+      if (!wordCounts[word]) {
+        wordCounts[word] = 1;
+      } else {
+        wordCounts[word]++;
+    }
+
+    console.log(wordCounts);
+  }
+  });
+
+}
 // const displayHouseTitle = function (house) {
 //   const titleSelect = document.querySelector('#title');
 //   const titleStringy = JSON.stringify(house.name);
