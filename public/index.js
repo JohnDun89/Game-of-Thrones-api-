@@ -4,11 +4,21 @@ const app = function () {
 
   const dropdown = document.querySelector('#menu');
 
-  const url = 'https://www.anapioficeandfire.com/api/houses?page=1&pageSize=250'
+  const url = 'https://www.anapioficeandfire.com/api/houses?page=1&pageSize=50'
+  const url2 = 'https://www.anapioficeandfire.com/api/houses?page=2&pageSize=50'
+  const url3 = 'https://www.anapioficeandfire.com/api/houses?page=3&pageSize=50'
+  const url4 = 'https://www.anapioficeandfire.com/api/houses?page=4&pageSize=50'
+  const url5 = 'https://www.anapioficeandfire.com/api/houses?page=5&pageSize=50'
+  const url6 = 'https://www.anapioficeandfire.com/api/houses?page=6&pageSize=50'
+  const url7 = 'https://www.anapioficeandfire.com/api/houses?page=7&pageSize=50'
   const house = JSON.parse(localStorage.getItem('house'));
   // console.log(url);
   makeRequest(url, requestComplete);
-  // console.log('function running');
+  makeRequest(url2, requestComplete);
+  makeRequest(url3, requestComplete);
+  makeRequest(url4, requestComplete);
+  makeRequest(url5, requestComplete);
+  makeRequest(url6, requestComplete);
 
   const button = document.querySelector('#button');
   console.log('button clicked');
