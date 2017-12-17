@@ -53,7 +53,7 @@ var wordCount = function(houses) {
     allHouseWords = house.words;
     if (allHouseWords === '') {
       return;
-    }
+    };
     arrayOfWords = allHouseWords.split(/\s+/);
     for (var i = 0; i < arrayOfWords.length; i++) {
       word = arrayOfWords[i];
@@ -61,49 +61,90 @@ var wordCount = function(houses) {
         wordCounts[word] = 1;
       } else {
         wordCounts[word]++;
+      };
     };
-  };
   });
   const li = document.createElement('li');
   wordString = JSON.stringify(wordCounts);
   li.innerText = wordString;
   ul.appendChild(li);
   console.log(wordCounts);
+
+
+  //-------------------------------------------------------------------Chart Code.
+
+
+  Highcharts.chart('container', {
+    chart: {
+      type: 'column'
+    },
+    title: {
+      text: 'Most popular words In game of thrones House words'
+    },
+    subtitle: {
+      text: 'Source: <a href="http://en.wikipedia.org/wiki/List_of_cities_proper_by_population">Wikipedia</a>'
+    },
+    xAxis: {
+      type: 'category',
+      labels: {
+        rotation: -45,
+        style: {
+          fontSize: '13px',
+          fontFamily: 'Verdana, sans-serif'
+        }
+      }
+    },
+    yAxis: {
+      min: 0,
+      title: {
+        text: 'Population (millions)'
+      }
+    },
+    legend: {
+      enabled: false
+    },
+    tooltip: {
+      pointFormat: 'Population in 2008: <b>{point.y:.1f} millions</b>'
+    },
+    series: [{
+      name: 'Words',
+      data: [
+        ['Shanghai', 23.7],
+        ['Lagos', 16.1],
+        ['Istanbul', 14.2],
+        ['Karachi', 14.0],
+        ['Mumbai', 12.5],
+        ['Moscow', 12.1],
+        ['São Paulo', 11.8],
+        ['Beijing', 11.7],
+        ['Guangzhou', 11.1],
+        ['Delhi', 11.1],
+        ['Shenzhen', 10.5],
+        ['Seoul', 10.4],
+        ['Jakarta', 10.0],
+        ['Kinshasa', 9.3],
+        ['Tianjin', 9.3],
+        ['Tokyo', 9.0],
+        ['Cairo', 8.9],
+        ['Dhaka', 8.9],
+        ['Mexico City', 8.9],
+        ['Lima', 8.9]
+      ],
+      dataLabels: {
+        enabled: true,
+        rotation: -90,
+        color: '#FFFFFF',
+        align: 'right',
+        format: '{point.y:.1f}', // one decimal
+        y: 10, // 10 pixels down from the top
+        style: {
+          fontSize: '13px',
+          fontFamily: 'Verdana, sans-serif'
+        }
+      }
+    }]
+  });
 };
-// const displayHouseTitle = function (house) {
-//   const titleSelect = document.querySelector('#title');
-//   const titleStringy = JSON.stringify(house.name);
-//   titleSelect.innerText  = titleStringy;
-// };
-//
-// const displayHouseRegion = function (house) {
-//   const regionSelect = document.querySelector('#region');
-//   const regionStringy = JSON.stringify(house.region);
-//   regionSelect.innerText = 'Region - ' + regionStringy;
-// };
-//
-// const displayVassalOf = function (house) {
-//   // console.log('vassal');
-//   console.log(house.overlord);
-//   const vassalStringy = JSON.stringify(house.overlord);
-//   const houseP = JSON.parse(localStorage.getItem('vassal'));
-//   // console.log(vassalStringy);
-//   makeSingleRequest(house.overlord, requestSingleComplete)
-// };
-//
-// const displayHouseWords = function (house) {
-//   const wordsSelect = document.querySelector('#words');
-//   const wordsStringy = JSON.stringify(house.words);
-//   if (wordsStringy ==='""') { return;
-//   };
-//   wordsSelect.innerText = wordsStringy;
-// };
-//
-// var populateOneHouses = function(house) {
-//   var select = document.getElementById('vassal');
-//   vassalName = JSON.stringify(house.name);
-//   select.innerText = 'Vassal of - ' + vassalName;
-// };
 
 //------------------------------------------------------Document Event Listener.
 
