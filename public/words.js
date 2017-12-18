@@ -3,44 +3,60 @@
 const app = function () {
 
 
-  const url = 'https://www.anapioficeandfire.com/api/houses?page=1&pageSize=50'
-  const url2 = 'https://www.anapioficeandfire.com/api/houses?page=2&pageSize=50'
-  const url3 = 'https://www.anapioficeandfire.com/api/houses?page=2&pageSize=50'
-  const url4 = 'https://www.anapioficeandfire.com/api/houses?page=2&pageSize=50'
-  const house = JSON.parse(localStorage.getItem('house'));
-  // console.log(url);
-  makeRequest(url, requestComplete);
-  // makeRequest(url2, requestComplete);
-  // makeRequest(url3, requestComplete);
-  // makeRequest(url4, requestComplete);
+
+
+  const url = ['https://www.anapioficeandfire.com/api/houses?page=1&pageSize=50',
+  'https://www.anapioficeandfire.com/api/houses?page=2&pageSize=50',
+  'https://www.anapioficeandfire.com/api/houses?page=3&pageSize=50',
+   'https://www.anapioficeandfire.com/api/houses?page=4&pageSize=50']
+
+   makeRequest(url, requestComplete);
+   // makeRequest(url2, requestComplete);
+   // makeRequest(url3, requestComplete);
+   // makeRequest(url4, requestComplete);
+
+
 
 };
 
+
+
+
 const requestComplete = function () {
+
   if ( this.status !== 200) return;
   var jsonString = this.responseText;
   houses = JSON.parse(jsonString);
-  wordCount(houses);
+  save(houses);
+  wordCount(houses)
+
+
 };
+
 
 
 const makeRequest = function(url, callback) {
-  const request = new XMLHttpRequest();
-  request.open('GET', url);
-  request.addEventListener('load', callback);
-  request.send();
-  // console.log('loaded');
+  allRequests = [];
+  for (var link of url) {
+    const request = new XMLHttpRequest();
+    request.open('GET', link );
+    request.addEventListener('load', callback);
+    request.send();
+  };
+  var returnRequests = allRequests;
+  console.log(returnRequests);
+  return returnRequests;
+
+
 };
 
 const save = function(house){
-  const jsonString = JSON.stringify(house);
-  localStorage.setItem('house', jsonString);
+  allRequests.push(house);
 };
-
 //-----------------------------------------------------------API appending code.
 
 var wordDisplay = function(houses) {
-  console.log('word count ran');
+  // console.log('word count ran');
   var ul = document.querySelector('#count');
   houses.forEach(function(house, index){
     const li = document.createElement('li');
@@ -76,7 +92,7 @@ var wordCount = function(houses) {
   wordString = JSON.stringify(wordCounts);
   // li.innerText = wordString;
   // ul.appendChild(li);
-  console.log(wordCounts);
+  // console.log(wordCounts);
 
   var graphPopulator = function (keyValues) {
     var newArray = Object.keys(keyValues).map(function(data){
